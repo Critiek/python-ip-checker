@@ -1,24 +1,16 @@
-import requests
-import json
+import pyglet
 
-ip = input("Enter the IP >")
+window = pyglet.window.Window()
 
-url = "https://api.greynoise.io/v3/community/{}".format(ip)
+label = pyglet.text.Label('Hello, world',
+                          font_name='Times New Roman',
+                          font_size=36,
+                          x=window.width//2, y=window.height//2,
+                          anchor_x='center', anchor_y='center')
 
-headers = {"accept": "application/json"}
+@window.event
+def on_draw():
+    window.clear()
+    label.draw()
 
-def get(url, headers):
-    response = requests.get(url, headers=headers)
-    return response
-
-response = get(url, headers)
-
-print(response.text)
-
-response_json = json.dumps(response.text)
-
-file = open("response.json", "w")
-try:
-    file.write(response_json)
-finally:
-    file.close()
+pyglet.app.run()

@@ -14,3 +14,4 @@ def on_draw():
     label.draw()
 
 pyglet.app.run()
+

@@ -21,5 +21,3 @@ def get_response_from_greynoise():
         file.write(json.dumps(response.text))
     finally:
         file.close()
-
-get_response_from_greynoise()

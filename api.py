@@ -11,14 +11,15 @@ def get(url, headers):
     response = requests.get(url, headers=headers)
     return response
 
-response = get(url, headers)
+def get_response_from_greynoise():
+    response = get(url, headers)
 
-print(response.text)
+    print(response.text)
 
-response_json = json.dumps(response.text)
+    file = open("response.json", "w")
+    try:
+        file.write(json.dumps(response.text))
+    finally:
+        file.close()
 
-file = open("response.json", "w")
-try:
-    file.write(response_json)
-finally:
-    file.close()
+get_response_from_greynoise()

@@ -2,7 +2,7 @@
 A Python app that uses the Greynoise API to get data on an entered IP.
 
 <br>
-<h3 style="color:crimson">TODO:</h3>
+### TODO:
 
 *  Get JSON data correctly dumping into response.json.
 * Read and display raw JSON data in the Pyglet window.

@@ -6,15 +6,14 @@ with open('api/greynoise_key.txt', 'r') as file:
 
 headers = {"key": key, "accept": "application/json"}
 
-def url(ip):
-    return "https://api.greynoise.io/v3/community/{}".format(ip)
+url = "https://api.greynoise.io/v3/community/"
 
 def get(url, headers):
     response = requests.get(url, headers=headers)
     return response
 
 def get_response_from_greynoise(ip):
-    response = get(url(ip), headers)
+    response = get(url+ip, headers)
 
     print(response.text)
 

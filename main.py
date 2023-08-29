@@ -1,28 +1,38 @@
-import pyglet
+import PySimpleGUI as sg
 import json
 from api import greynoise_api
 
-window = pyglet.window.Window()
+# Define the window's contents
+layout = [[sg.Text("Enter the IP adress:")],
+          [sg.Input(key='-IP-')],
+          [sg.Text(size=(40,1), key='-OUTPUT-')],
+          [sg.Button('Ok'), sg.Button('Quit')]]
 
-greynoise_api.get_response_from_greynoise()
+# Create the window
+window = sg.Window('Window Title', layout)
 
-with open('response.json') as response_file:
-  response_data = response_file.read()
+ 
 
-ip_info = json.loads(response_data)
+# Display and interact with the Window using an Event Loop
+while True:
+  event, values = window.read()
+  # See if user wants to quit or window was closed
+  if event == sg.WINDOW_CLOSED or event == 'Quit':
+      break
+  # Output a message to the window
 
-response_file.close()
+  ip = values['-IP-']
 
-label = pyglet.text.Label(ip_info["message"],
-                          font_name='Arial',
-                          font_size=16,
-                          x=window.width//2, y=window.height//2,
-                          anchor_x='center', anchor_y='center')
+  greynoise_api.get_response_from_greynoise(ip)
 
-@window.event
-def on_draw():
-    window.clear()
-    label.draw()
+  with open('response.json') as response_file:
+    response_data = response_file.read()
 
-pyglet.app.run()
+  ip_info = json.loads(response_data)
 
+  response_file.close()
+
+  window['-OUTPUT-'].update(ip_info['message'])
+
+# Finish up by removing from the screen
+window.close()

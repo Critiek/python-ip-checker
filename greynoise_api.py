@@ -18,6 +18,6 @@ def get_response_from_greynoise():
 
     file = open("response.json", "w")
     try:
-        file.write(json.dumps(response.text))
+        file.write(response.text)
     finally:
         file.close()

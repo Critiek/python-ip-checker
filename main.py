@@ -1,13 +1,21 @@
 import pyglet
-import greynoise_api
+import json
+from api import greynoise_api
 
 window = pyglet.window.Window()
 
-response = greynoise_api.get_response_from_greynoise()
+greynoise_api.get_response_from_greynoise()
 
-label = pyglet.text.Label('ashmongus',
-                          font_name='Times New Roman',
-                          font_size=11,
+with open('response.json') as response_file:
+  response_data = response_file.read()
+
+ip_info = json.loads(response_data)
+
+response_file.close()
+
+label = pyglet.text.Label(ip_info["message"],
+                          font_name='Arial',
+                          font_size=16,
                           x=window.width//2, y=window.height//2,
                           anchor_x='center', anchor_y='center')
 

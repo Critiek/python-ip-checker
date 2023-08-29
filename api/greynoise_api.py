@@ -1,11 +1,14 @@
 import requests
 import json
 
-ip = input("Enter the IP >")
+with open('api/greynoise_key.txt', 'r') as file:
+    key = file.read()
+
+ip = input("Enter the IP \n> ")
 
 url = "https://api.greynoise.io/v3/community/{}".format(ip)
 
-headers = {"accept": "application/json"}
+headers = {"key": key, "accept": "application/json"}
 
 def get(url, headers):
     response = requests.get(url, headers=headers)

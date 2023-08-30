@@ -2,16 +2,16 @@ import PySimpleGUI as sg
 import json
 from api import greynoise_api
 
+sg.theme('DarkPurple1')
+
 # Define the window's contents
 layout = [[sg.Text("Enter the IP adress:")],
           [sg.Input(key='-IP-')],
-          [sg.Text(size=(40,1), key='-OUTPUT-')],
+          [sg.Text(key='-OUTPUT-')],
           [sg.Button('Ok'), sg.Button('Quit')]]
 
 # Create the window
-window = sg.Window('Window Title', layout)
-
- 
+window = sg.Window('IP Checker', layout, size=(500, 100), resizable=True, finalize=True)
 
 # Display and interact with the Window using an Event Loop
 while True:

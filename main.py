@@ -6,12 +6,14 @@ sg.theme('DarkPurple1')
 
 # Define the window's contents
 layout = [[sg.Text("Enter the IP adress:")],
-          [sg.Input(key='-IP-')],
-          [sg.Text(key='-OUTPUT-')],
-          [sg.Button('Ok'), sg.Button('Quit')]]
+          [sg.Input(size=(15), key='-IP-')],
+          [sg.Text(key='-MESSAGE-')],
+          [sg.Text(key='-NOISE-')],
+          [sg.Text(key='-RIOT-')],
+          [sg.Button('Check'), sg.Button('Quit')]]
 
 # Create the window
-window = sg.Window('IP Checker', layout, size=(500, 100), resizable=True, finalize=True)
+window = sg.Window('IP Checker', layout, size=(500, 150), resizable=True, finalize=True)
 
 # Display and interact with the Window using an Event Loop
 while True:
@@ -27,12 +29,11 @@ while True:
 
   with open('response.json') as response_file:
     response_data = response_file.read()
+    ip_info = json.loads(response_data)
 
-  ip_info = json.loads(response_data)
-
-  response_file.close()
-
-  window['-OUTPUT-'].update(ip_info['message'])
+  window['-MESSAGE-'].update(ip_info['message'])
+  window['-NOISE-'].update('Noise: ' + str(ip_info['noise']))
+  window['-RIOT-'].update('Riot: ' + str(ip_info['riot']))
 
 # Finish up by removing from the screen
 window.close()

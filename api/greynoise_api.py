@@ -22,3 +22,4 @@ def get_response_from_greynoise(ip):
         file.write(response.text)
     finally:
         file.close()
+

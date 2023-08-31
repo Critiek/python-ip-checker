@@ -15,9 +15,15 @@ layout = [[sg.Text("Enter the IP adress:")],
 # Create the window
 window = sg.Window('IP Checker', layout, size=(500, 150), resizable=True, finalize=True)
 
+keys_to_clear = ['-MESSAGE-', '-NOISE-', '-RIOT-']
+
 # Display and interact with the Window using an Event Loop
 while True:
   event, values = window.read()
+
+  for key in keys_to_clear:
+    window[key]('')
+
   # See if user wants to quit or window was closed
   if event == sg.WINDOW_CLOSED or event == 'Quit':
       break
@@ -32,8 +38,11 @@ while True:
     ip_info = json.loads(response_data)
 
   window['-MESSAGE-'].update(ip_info['message'])
-  window['-NOISE-'].update('Noise: ' + str(ip_info['noise']))
-  window['-RIOT-'].update('Riot: ' + str(ip_info['riot']))
+
+  if 'noise' in ip_info:
+    window['-NOISE-'].update('Noise: ' + str(ip_info['noise']))
+  if 'riot' in ip_info:
+    window['-RIOT-'].update('Riot: ' + str(ip_info['riot']))
 
 # Finish up by removing from the screen
 window.close()

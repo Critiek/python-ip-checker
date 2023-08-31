@@ -17,9 +17,6 @@ def get_response_from_greynoise(ip):
 
     print(response.text)
 
-    file = open("response.json", "w")
-    try:
+    with open("response.json", "w") as file:
         file.write(response.text)
-    finally:
-        file.close()
 

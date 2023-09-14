@@ -1,7 +1,7 @@
 import requests
 import json
 
-with open('api/greynoise_key.txt', 'r') as file:
+with open('api/greynoise/greynoise_key.txt', 'r') as file:
     key = file.read()
 
 headers = {"key": key, "accept": "application/json"}

@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 import json
-from api import greynoise_api
+from api.greynoise import greynoise_api
 
 sg.theme('DarkPurple1')
 

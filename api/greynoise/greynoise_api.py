@@ -18,4 +18,3 @@ def get_response_from_greynoise(ip):
 
     with open("response.json", "w") as file:
         file.write(response.text)
-

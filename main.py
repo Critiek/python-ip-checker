@@ -13,7 +13,7 @@ layout = [[sg.Text("Enter the IP adress:")],
           [sg.Button('Check'), sg.Button('Quit')]]
 
 # Create the window
-window = sg.Window('IP Checker', layout, size=(500, 150), resizable=True, finalize=True)
+window = sg.Window('IP Checker', layout, size=(500, 175), resizable=True, finalize=True)
 
 keys_to_clear = ['-MESSAGE-', '-NOISE-', '-RIOT-']
 

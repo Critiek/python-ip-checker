@@ -1,5 +1,4 @@
 import requests
-import json
 
 with open('api/greynoise/greynoise_key.txt', 'r') as file:
     key = file.read()

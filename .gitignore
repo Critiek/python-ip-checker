@@ -1,4 +1,4 @@
 .venv
 response.json
 __pycache__
-api/greynoise/greynoise_key.txt
+api/keys/*

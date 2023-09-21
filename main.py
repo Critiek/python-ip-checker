@@ -4,18 +4,24 @@ from api.greynoise import greynoise_api
 
 sg.theme('DarkPurple1')
 
+screen_scale_width = 3
+screen_scale_height = 3
+
 def get_screen_resolution():
   root = sg.tk.Tk()
   # Get the screen size
   width = root.winfo_screenwidth()
   height = root.winfo_screenheight()
   # Print the screen size
-  print("The screen size is {}x{}".format(width, height))
+  print("The screen size is {}x{} \nThe scaled size will be {}x{}".format(width, height, int(width/screen_scale_width), int(height/screen_scale_height)))
   # Close the Tkinter window
   root.destroy()
   return (width, height)
 
 (screen_width, screen_height) = get_screen_resolution()
+
+screen_scale_width = 3
+screen_scale_height = 3
 
 # Define the window's contents
 layout = [[sg.Text("Enter the IP adress:")], 
@@ -26,7 +32,7 @@ layout = [[sg.Text("Enter the IP adress:")],
           [sg.Button('Check'), sg.Button('Quit')]]
 
 # Create the window
-window = sg.Window('IP Checker', layout, size=(int(screen_width/3), int(screen_height/3)), resizable=True, finalize=True)
+window = sg.Window('IP Checker', layout, size=(int(screen_width/screen_scale_width), int(screen_height/screen_scale_height)), resizable=True, finalize=True)
 
 keys_to_clear = ['-MESSAGE-', '-NOISE-', '-RIOT-']
 

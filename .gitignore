@@ -2,3 +2,4 @@
 response.json
 __pycache__
 api/keys/*.key
+.DS_store

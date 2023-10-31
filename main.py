@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import re
 import json
 from api.greynoise import greynoise_api
 
@@ -17,6 +18,13 @@ def get_screen_resolution():
     # Close the Tkinter window
     root.destroy()
     return (width, height)
+
+def is_valid_ipv4(ip):
+    pattern = r'^((([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3})([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$'
+    if re.match(pattern, ip):
+        return True
+    else:
+        return False
 
 (screen_width, screen_height) = get_screen_resolution()
 
@@ -50,22 +58,26 @@ while True:
 
     ip = values['-IP-']
 
-    greynoise_api.get_response_from_greynoise(ip)
+    if is_valid_ipv4(ip):
+        greynoise_api.get_response_from_greynoise(ip)
 
-    with open('response.json') as response_file:
-        response_data = response_file.read()
-        ip_info = json.loads(response_data)
+        with open('response.json') as response_file:
+            response_data = response_file.read()
+            ip_info = json.loads(response_data)
 
-    window['-MESSAGE-'].update(ip_info['message'])
+        window['-MESSAGE-'].update(ip_info['message'])
 
-    if 'noise' in ip_info:
-        window['-NOISE-'].update('Noise: ' + str(ip_info['noise']))
-    if 'riot' in ip_info:
-        window['-RIOT-'].update('Riot: ' + str(ip_info['riot']))
-    if 'classification' in ip_info:
-        window['-CLASSIFICATION-'].update('Classification: ' + str(ip_info['classification']))
-    if 'last_seen' in ip_info:
-        window['-LASTSEEN-'].update('Last Seen: ' + str(ip_info['last_seen']))
+        if 'noise' in ip_info:
+            window['-NOISE-'].update('Noise: ' + str(ip_info['noise']))
+        if 'riot' in ip_info:
+            window['-RIOT-'].update('Riot: ' + str(ip_info['riot']))
+        if 'classification' in ip_info:
+            window['-CLASSIFICATION-'].update('Classification: ' + str(ip_info['classification']))
+        if 'last_seen' in ip_info:
+            window['-LASTSEEN-'].update('Last Seen: ' + str(ip_info['last_seen']))
+
+    else:
+        window['-MESSAGE-'].update("That is not a valid ipv4 address.")
 
 # Finish up by removing from the screen
 window.close()

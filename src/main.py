@@ -1,12 +1,15 @@
 import PySimpleGUI as sg
 import re
 import json
-from api.greynoise import greynoise_api
+from os.path import exists
+from api import greynoise_api
 
 sg.theme('DarkPurple1')
 
 screen_scale_width = 3
 screen_scale_height = 3
+
+path_to_key = 'keys/greynoise_key.key'
 
 def get_screen_resolution():
     root = sg.tk.Tk()
@@ -14,7 +17,7 @@ def get_screen_resolution():
     width = root.winfo_screenwidth()
     height = root.winfo_screenheight()
     # Print the screen size
-    print("The screen size is {}x{} \nThe scaled size will be {}x{}".format(width, height, int(width/screen_scale_width), int(height/screen_scale_height)))
+    print('The screen size is {}x{} \nThe scaled size will be {}x{}'.format(width, height, int(width/screen_scale_width), int(height/screen_scale_height)))
     # Close the Tkinter window
     root.destroy()
     return (width, height)
@@ -28,15 +31,15 @@ def is_valid_ipv4(ip):
 
 (screen_width, screen_height) = get_screen_resolution()
 
-screen_scale_width = 3
-screen_scale_height = 3
+if exists(path_to_key):
+    print('Key exists')
 
 # Define the window's contents
-layout = [[sg.Text("Enter the IP adress:")], 
+layout = [[sg.Text('Enter the IP adress:')], 
           [sg.Input(size=(15), key='-IP-')],
           [sg.Text(key='-MESSAGE-')],
           [sg.Text(key='-NOISE-'), sg.Text(key='-CLASSIFICATION-')],
-          [sg.Text(key='-RIOT-'), sg.Text(key="-LASTSEEN-")],
+          [sg.Text(key='-RIOT-'), sg.Text(key='-LASTSEEN-')],
           [sg.Button('Check'), sg.Button('Quit')]]
 
 # Create the window
@@ -59,6 +62,7 @@ while True:
     ip = values['-IP-']
 
     if is_valid_ipv4(ip):
+
         greynoise_api.get_response_from_greynoise(ip)
 
         with open('response.json') as response_file:

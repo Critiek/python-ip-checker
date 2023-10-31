@@ -42,7 +42,7 @@ layout = [[sg.Text("Enter the IP adress:")],
 # Create the window
 window = sg.Window('IP Checker', layout, size=(int(screen_width/screen_scale_width), int(screen_height/screen_scale_height)), resizable=True, finalize=True)
 
-keys_to_clear = ['-MESSAGE-', '-NOISE-', '-RIOT-']
+keys_to_clear = ['-MESSAGE-', '-NOISE-', '-RIOT-', '-CLASSIFICATION-', '-LASTSEEN-']
 
 # Display and interact with the Window using an Event Loop
 while True:

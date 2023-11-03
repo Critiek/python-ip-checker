@@ -3,7 +3,7 @@ import re
 import json
 from os.path import exists
 from api import greynoise_api
-from src import key_entry
+import key_entry
 
 key_entry.test()
 

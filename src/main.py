@@ -3,6 +3,9 @@ import re
 import json
 from os.path import exists
 from api import greynoise_api
+import key_entry
+
+key_entry.test()
 
 sg.theme('DarkPurple1')
 

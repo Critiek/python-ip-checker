@@ -12,5 +12,6 @@ all zero-days found in a specific date range.
 
 ### Building:
 This uses pyinstaller for building executable programs for Windows (and other OSses)
+It is recommended that you create a virtual environment inside of the root folder with venv (```python -m venv .venv```). Then, install the requirements with ```pip install -r requirements.txt```.
 The build command is: ```pyinstaller ip-checker.spec```
 After being build, a ```keys``` directory needs to be created in the root folder of the build

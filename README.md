@@ -1,4 +1,4 @@
-# python-vulnerability-analysis
+# python-ip-checker
 A Python app that uses the Greynoise API to get data on an entered IP.
 
 

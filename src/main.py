@@ -33,9 +33,13 @@ def is_valid_ipv4(ip):
         return False
 
 (screen_width, screen_height) = get_screen_resolution()
+scaled_screen_width = screen_width/screen_scale_width
+scaled_screen_height = screen_height/screen_scale_height
+
 
 if exists(path_to_key):
     print('Key exists')
+    key_entry.create_entry_window(scaled_screen_width, scaled_screen_height)
 
 # Define the window's contents
 layout = [[sg.Text('Enter the IP adress:')], 
@@ -46,7 +50,7 @@ layout = [[sg.Text('Enter the IP adress:')],
           [sg.Button('Check'), sg.Button('Quit')]]
 
 # Create the window
-window = sg.Window('IP Checker', layout, size=(int(screen_width/screen_scale_width), int(screen_height/screen_scale_height)), resizable=True, finalize=True)
+window = sg.Window('IP Checker', layout, size=(int(scaled_screen_width), int(scaled_screen_height)), resizable=True, finalize=True)
 
 keys_to_clear = ['-MESSAGE-', '-NOISE-', '-RIOT-', '-CLASSIFICATION-', '-LASTSEEN-']
 

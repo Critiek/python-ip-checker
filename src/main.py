@@ -19,9 +19,7 @@ def get_screen_resolution():
     # Get the screen size
     width = root.winfo_screenwidth()
     height = root.winfo_screenheight()
-    # Print the screen size
-    print('The screen size is {}x{} \nThe scaled size will be {}x{}'.format(width, height, int(width/screen_scale_width), int(height/screen_scale_height)))
-    # Close the Tkinter window
+   # Close the Tkinter window
     root.destroy()
     return (width, height)
 
@@ -36,6 +34,9 @@ def is_valid_ipv4(ip):
 scaled_screen_width = screen_width/screen_scale_width
 scaled_screen_height = screen_height/screen_scale_height
 
+# Print the screen size
+print(f'The screen size is {screen_width}x{screen_height} \nThe scaled size will be {int(scaled_screen_width)}x{int(scaled_screen_height)}')
+ 
 
 if exists(path_to_key):
     print('Key exists')

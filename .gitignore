@@ -1,5 +1,5 @@
 .venv
 response.json
 __pycache__
-keys/*.key
+*.key
 .DS_store

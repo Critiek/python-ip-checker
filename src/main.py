@@ -40,6 +40,8 @@ print(f'The screen size is {screen_width}x{screen_height} \nThe scaled size will
 
 if exists(path_to_key):
     print('Key exists')
+else:
+    print('No key found!')
     key_entry.create_entry_window(scaled_screen_width, scaled_screen_height)
 
 # Define the window's contents

@@ -3,3 +3,5 @@ response.json
 __pycache__
 *.key
 .DS_store
+dist/
+build/

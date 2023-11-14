@@ -5,8 +5,6 @@ from os.path import exists
 from api import greynoise_api
 import key_entry
 
-key_entry.test()
-
 sg.theme('DarkPurple1')
 
 screen_scale_width = 3
@@ -45,7 +43,7 @@ else:
     key_entry.create_entry_window(scaled_screen_width, scaled_screen_height)
 
 # Define the window's contents
-layout = [[sg.Text('Enter the IP adress:')], 
+layout = [[sg.Text('Enter the IP address:')], 
           [sg.Input(size=(15), key='-IP-')],
           [sg.Text(key='-MESSAGE-')],
           [sg.Text(key='-NOISE-'), sg.Text(key='-CLASSIFICATION-')],

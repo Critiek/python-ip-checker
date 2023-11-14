@@ -22,6 +22,3 @@ def create_entry_window(scaled_screen_width, scaled_screen_height):
                 file.write(values['-KEY-'])
             key_window.close()
             break
-
-def test():
-    print('test')
